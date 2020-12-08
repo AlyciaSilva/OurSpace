@@ -1,0 +1,50 @@
+<html lang="br">
+    <head>
+        <meta charset = "uft-8">
+        <title>Registre-se</title>
+        <link rel="stylesheet" href="register.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="center"> 
+            <header>
+                <h1 class = "typingField"> Cadastre-se </h1>
+                <br>
+            </header>
+            <section>   
+                <div class="typingField">
+                    <div class = "form">
+                        <div>
+                            <label for = "name">Insira seu nome:</label><br>
+                            <input type="text" name = "name" id = "name"> 
+                        </div>
+                        <br>
+                        <div>
+                            <label for = "midleName">Seu sobrenome:</label><br>
+                            <input type = "text" name = "midleName" id = "midleName">
+                        </div>
+                        <br>
+                        <div>
+                            <label for = "birthday">Data de nascimento:</label><br>
+                            <input type = "date" name = "birthday" id = "birthday">
+                        </div>
+                        <br>
+                        <div>
+                            <label for = "senha">Crie uma senha:</label><br>
+                            <input type="password" name = "senha" id = "senha">
+                        </div>
+                        <br>
+                        <div>
+                            <label for = "email">Agora insira seu email:</label><br>
+                            <input type = "email" name = "email" id = "email"> 
+                        </div>
+                        <br>
+                        <br>
+                        <button onclick = "register()">Enviar</button>
+                    </div>
+                </div>
+            </section>
+        </div>   
+        <script src="js/requisitions.js"></script> 
+    </body>
+</html>

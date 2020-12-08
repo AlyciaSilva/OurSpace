@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+* {
+    Box-sizing: border-box;
+}
+
+body {
+    width: center;
+    background-color: blueviolet;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#container {
+    background-color: blueviolet;
+    padding: 0;
+    box-shadow: 0 0 5px #fff;
+    border-radius: 10px;
+    width: 80%;
+    height: 85%;
+    font-family: "Arial", "Helvetica", sans-serif;
+}
+
+#messages-container {
+    height: 88%;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #a09d9d7c;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0.5%;
+    Overflow-y: auto;
+}
+
+#messages-container .message {
+    width: 95%;
+    padding: 0.25%;
+    background-color: rgba(47, 5, 87, 0.466);
+    border-left: 1px solid #c4c4ff;
+    border-radius: 10px;
+}
+
+#messages-container .message .header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #cee1f7;
+}
+
+#messages-container .message .header .name {
+    margin-right: 25px;
+    font-size: 10pt;
+    font-weight: 700;
+    font-family: "Arial", "Helvetica", sans-serif;
+    color: rgb(0, 0, 0);
+}
+
+#messages-container .message .header .timestamp {
+    font-size: 10pt;
+    font-weight: 400;
+    font-family: "Arial", "Helvetica", sans-serif;
+    color: rgb(0, 0, 0);
+}
+
+#messages-container .message .message-content p {
+    text-align: justify;
+    font-size: 10pt;
+    font-family: "Arial", "Helvetica", sans-serif;
+    color: rgb(0, 0, 0);
+}
+
+#send-bar {
+    height: 12%;
+    width: 100%;
+    background-color: rgb(84, 9, 107);
+    padding: 0.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+#send-bar textarea {
+    width: 75%;
+    font-size: 10pt;
+    text-align: justify;
+    border-radius: 10px;
+    background-color: rgba(252, 252, 252, 0);
+}
+
+#send-bar button{
+    width: 10%;
+    color: rgba(0, 0, 0, 0.842);
+    font-weight: 850;
+    border-radius: 9px;
+    background-color: rgba(97, 34, 156, 0.884);
+}
+
+/*
+    height: 20%;
+    font-family: "Arial", "Helvetica", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+} */
