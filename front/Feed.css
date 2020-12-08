@@ -1,26 +1,59 @@
 @charset "UTF-8";
 
 * {
-    Box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-    width: center;
     background-color: blueviolet;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    flex-direction: column;
 }
-#nextScreen{
-    
+
+#top h1{
+    font-family: 'Lato', sans-serif;
+    color: #fff;
 }
+
+#next-screen {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5%;
+}
+
+#next-screen button {
+    padding: 0.25% 0.5%;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    font-size: 12pt;
+}
+
+#next-screen button:hover {
+    box-shadow: 0 0 8px #fff;
+    font-weight: 700;
+}
+
+#next-screen #btn-delete {
+    background-color: #b12124;
+}
+
+#next-screen #btn-update {
+    background-color: #238015;
+}
+
 #container {
     background-color: blueviolet;
     padding: 0;
     box-shadow: 0 0 5px #fff;
     border-radius: 10px;
     width: 80%;
-    height: 85%;
+    height: 75%;
     font-family: "Arial", "Helvetica", sans-serif;
 }
 
@@ -44,6 +77,18 @@ body {
     border-radius: 10px;
 }
 
+#messages-container .message:first-child {
+    margin-top: 0.5%;
+}
+
+#messages-container .message:nth-child(2){
+    margin-top: 0.5%;
+}
+
+#messages-container > .message + .message {
+    margin-bottom: 0.5%;
+}
+
 #messages-container .message .header {
     display: flex;
     align-items: center;
@@ -56,6 +101,7 @@ body {
     font-weight: 700;
     font-family: "Arial", "Helvetica", sans-serif;
     color: rgb(0, 0, 0);
+    margin-left: 0.25%;
 }
 
 #messages-container .message .header .timestamp {
@@ -70,6 +116,7 @@ body {
     font-size: 10pt;
     font-family: "Arial", "Helvetica", sans-serif;
     color: rgb(0, 0, 0);
+    margin-left: 0.25%;
 }
 
 #send-bar {
@@ -93,7 +140,7 @@ body {
 
 #send-bar button{
     width: 10%;
-    color: rgba(0, 0, 0, 0.842);
+    color: #fff;
     font-weight: 850;
     border-radius: 9px;
     background-color: rgba(97, 34, 156, 0.884);

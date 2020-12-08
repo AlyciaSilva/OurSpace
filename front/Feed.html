@@ -3,13 +3,14 @@
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Feed.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,700&display=swap" rel="stylesheet">
     <title>Our Space!</title>
 </head>
-<body>
-    <!--    
-    <div id = "nextScreen">
-        <button onclick = "">Minhas mensagens</button>
-    </div>-->
+<body>  
+   <header id="top">
+        <h1>OurSpace</h1>
+    </header>
     <div id = "container">
         <div id="messages-container">
             <!--
@@ -28,6 +29,10 @@
             </textarea>
             <button onclick = "sendPost()">Enviar</button>
         </div>
+    </div>
+    <div id = "next-screen">
+        <button id="btn-delete" onclick = "">Apague suas mensagens</button>
+        <button id="btn-update" onclick = "">Atualize suas mensagens</button>
     </div>
     <script src = "js/requisitions.js"></script>
     <script>
