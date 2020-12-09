@@ -15,6 +15,7 @@ function sendRequest(URL, params, type) {
                     alert('Senha ou email incorrentos');
                 }
             }
+
             if (type === 'loadFeed') {
                 const posts = JSON.parse(request.responseText);
                 
@@ -26,14 +27,48 @@ function sendRequest(URL, params, type) {
                 } else {
                     console.log(posts);
                     for (i = 0; i < posts.length; i++) { 
-                        createBalloon(posts, i);
+                        createBalloon(posts, i, false, false);
                     }
                 }
             }
+
+            if (type === 'myPostsDel') {
+                const posts = JSON.parse(request.responseText);
+                
+                if (posts.status) {
+                    if (posts.status === 'offline')
+                        window.location.replace("http://localhost/ourspace/front/login.html");
+                    else if (posts.status === 0)
+                        alert('Não há publicações no momento!');
+                } else {
+                    console.log(posts);
+                    for (i = 0; i < posts.length; i++) { 
+                        createBalloon(posts, i, true, false);
+                    }
+                }
+            }
+
+            if (type === 'myPostsUpdate') {
+                const posts = JSON.parse(request.responseText);
+                
+                if (posts.status) {
+                    if (posts.status === 'offline')
+                        window.location.replace("http://localhost/ourspace/front/login.html");
+                    else if (posts.status === 0)
+                        alert('Não há publicações no momento!');
+                } else {
+                    console.log(posts);
+                    for (i = 0; i < posts.length; i++) { 
+                        createBalloon(posts, i, false, true);
+                    }
+                }
+            }
+
             if (type === 'updatePost') {
                 console.log(`logado como: ${request.responseText}`);
                 window.location.replace("http://localhost/ourspace/front/Feed.html");
             }
+
             if (type === 'sendPost') {
                 const responseJson = JSON.parse(request.responseText);
                 if (responseJson.status === 'ok') {
@@ -42,10 +77,16 @@ function sendRequest(URL, params, type) {
                     alert('Problema ao publicar! -> '+responseJson.status);
                 }
             }
+
             if (type === 'deletePost') {
-                console.log(`logado como: ${request.responseText}`);
-                window.location.replace("http://localhost/ourspace/front/Feed.html");
+                const responseJson = JSON.parse(request.responseText);
+                if (responseJson.status === 'ok') {
+                    console.log('Deletado!');                    
+                } else {
+                    alert('Problema ao deletar! -> '+responseJson.status);
+                }
             }
+
             if (type === 'register'){
                 const responseJson = JSON.parse(request.responseText);
                 if (responseJson.status === 'ok') {
@@ -53,10 +94,10 @@ function sendRequest(URL, params, type) {
                 } else {
                     alert('Email já existe');
                 }
-                
             }
         }
     }
+
     if (params === '') {
         request.send();
     } else {
@@ -91,8 +132,12 @@ function loadFeed() {
     sendRequest('http://localhost/ourspace/php/loadFeed.php', ``, 'loadFeed');
 }
 
-function updatePost() {
-    
+function loadMyPostsDel() {
+    sendRequest('http://localhost/ourspace/php/myPosts.php', ``, 'myPostsDel');
+}
+
+function loadMyPostsUpdate() {
+    sendRequest('http://localhost/ourspace/php/myPosts.php', ``, 'myPostsUpdate');
 }
 
 function sendPost() {
@@ -105,10 +150,34 @@ function sendPost() {
 }
 
 function deletePost() {
+    var check = document.getElementsByName('mensagens'); 
 
+    for (i = 0; i < check.length; i++){ 
+        if (check[i].checked === true){ 
+            var h = document.getElementById(String(i)+'p').innerHTML;
+            console.log(h);
+            sendRequest('http://localhost/ourspace/php/deletepost.php', `h=${h}`, 'deletePost');
+        }
+    }
+
+    window.location.replace("http://localhost/ourspace/front/Feed.html");
 }
 
-function createBalloon(posts, index) {
+function updatePost() {
+    const text = document.getElementById('text').value;    
+    var check = document.getElementsByName('mensagens'); 
+    for (i = 0; i < check.length; i++){ 
+        if (check[i].checked === true){ 
+            var h = document.getElementById(String(i)+'p').innerHTML;
+            console.log(h);
+            sendRequest('http://localhost/ourspace/php/updatepost.php', `h=${h}&text=${text}`, 'updatePost');
+            break;    
+        }
+    }
+    window.location.replace("http://localhost/ourspace/front/Feed.html");
+}
+
+function createBalloon(posts, index, del, update) {
     const messages_container = document.getElementById('messages-container');
     
     const message = document.createElement('div');
@@ -124,7 +193,11 @@ function createBalloon(posts, index) {
     p_name.className = 'name';
 
     const p_timestamp = document.createElement('p');
-    p_timestamp.id = 'timestamp';
+    if (del) {
+        p_timestamp.id = String(index)+'p';
+    } else if (update) {
+        p_timestamp.id = String(index)+'p';
+    }
     p_timestamp.className = 'timestamp';
     
     const message_content = document.createElement('div');
@@ -136,6 +209,20 @@ function createBalloon(posts, index) {
 
     messages_container.appendChild(message);
     message.appendChild(header);
+    if (del) {
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.id = String(index);
+        input.name = 'mensagens';
+        header.appendChild(input);
+    } else if (update) {
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.value = p_timestamp.innerHTML;
+        input.name = 'mensagens';
+        input.id = String(index); 
+        header.appendChild(input);
+    }
     header.appendChild(p_name);
     header.appendChild(p_timestamp);
     message.appendChild(message_content);

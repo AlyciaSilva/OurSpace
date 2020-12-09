@@ -13,27 +13,27 @@
     </header>
     <div id = "container">
         <div id="messages-container">
-            
+            <!--
             <div class="message" id="message">
                 <div class="header" id="header">
-                    <INPUT type = "radio" name = "opcao" VALUE = "marcado" id = "1">
+                    <INPUT type = "radio" id = "1" checked>
                     <p class="name" id="name">Nome</p>
                     <p class="timestamp" id="timestamp">Hoje - 21:44</p>
                 </div>
                 <div class="message-content" id="message-content">
                     <p id="txt">fefwefwe fwe fwefwef wwg wg wfewe fwef wefw ef wefwefwefw</p>
                 </div>
-            </div>
+            </div> --> 
         </div>
         <div id = "send-bar">
             <textarea id = "text" name = "text" placeholder = "Sua menssagem">
             </textarea>
-            <button onclick = "">atualizar</button>
+            <button onclick = "updatePost()">atualizar</button>
         </div>
     </div>
     <script src = "js/requisitions.js"></script>
     <script>
-        
+        loadMyPostsUpdate();
     </script>
 </body>
 </html>
